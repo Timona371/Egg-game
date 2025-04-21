@@ -1,30 +1,48 @@
-## Foundry
+## Egg-game
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## About the project
+EggHuntGame is a gamified NFT experience where participants search for hidden eggs to mint unique Eggstravaganza Egg NFTs. Players engage in an interactive hunt during a designated game period, and successful egg finds can be deposited into a secure Egg Vault.
 
-Foundry consists of:
+## Scope (contracts)
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+The following contracts are included in the project:
 
-## Documentation
-
-https://book.getfoundry.sh/
+```
+src/
+├── EggHuntGame.sol - Main game contract
+└── EggstravaganzaNFT.sol - ERC20 token awarded to winners
+└──EggVault.sol -Ownable contract
+```
 
 ## Usage
 
+
+
+## Compatibilities
+
+**Blockchains:**
+
+- Ethereum Mainnet
+- All EVM-compatible chains
+
 ### Build
 
-```shell
-$ forge build
+```bash
+# Install dependencies
+forge install OpenZeppelin/openzeppelin-contracts
+
+# Build contracts
+forge build
 ```
 
 ### Test
 
-```shell
-$ forge test
+```bash
+# Run all tests
+forge test
+
+# Run tests with gas reporting
+forge test --gas-report
 ```
 
 ### Format
@@ -39,28 +57,18 @@ $ forge fmt
 $ forge snapshot
 ```
 
-### Anvil
-
-```shell
-$ anvil
-```
 
 ### Deploy
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```bash
+# Deploy to local network
+forge script scripts/Deploy.s.sol --rpc-url http://localhost:8545 --broadcast
+
+# Deploy to testnet (example for Goerli)
+forge script scripts/Deploy.s.sol --rpc-url $GOERLI_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY
 ```
 
-### Cast
+[//]: # (getting-started-close)
 
-```shell
-$ cast <subcommand>
-```
+[//]: # (known-issues-open)
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
